@@ -1,0 +1,26 @@
+# Dependencies
+scripts/node_modules/
+
+# Feed cache files (generated fresh by prepare-digest.js)
+feed-*.json
+
+# Local state
+state-feed.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# IDE files
+.vscode/
+.idea/
+
+# Google fonts / CDN (none used, but just in case)
+
+# Digest output
+outputs/

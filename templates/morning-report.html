@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>AI Builders 晨报</title>
+<style>
+/* ===== CSS 变量 ===== */
+:root {
+  --hero-gradient: linear-gradient(135deg, #FF6B35 0%, #E8453A 40%, #D32F2F 70%, #B71C1C 100%);
+  --bg-primary: #FFF5F0;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FFF8F5;
+  --text-primary: #2D1B15;
+  --text-secondary: #6B4A40;
+  --text-muted: #9E7A6B;
+  --text-hero: #FFFFFF;
+  --accent-orange: #FF6B35;
+  --accent-red: #E8453A;
+  --accent-gold: #FFB74D;
+  --section-models: #FF6B35;
+  --section-products: #E8453A;
+  --section-business: #D32F2F;
+  --section-engineering: #FF8A65;
+  --section-podcast: #B71C1C;
+  --card-shadow: 0 2px 12px rgba(180, 60, 40, 0.08);
+  --card-shadow-hover: 0 6px 24px rgba(180, 60, 40, 0.15);
+  --card-radius: 16px;
+  --card-border: 1px solid rgba(255, 107, 53, 0.12);
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-hero: 2.5rem;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* ===== 全局重置 ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-family);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ===== HERO ===== */
+.hero {
+  background: var(--hero-gradient);
+  color: var(--text-hero);
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
+  animation: heroShine 8s ease-in-out infinite;
+}
+@keyframes heroShine {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(5%, 3%); }
+}
+.hero-content { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; }
+.hero-title {
+  font-size: var(--font-size-hero);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--spacing-sm);
+  text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+.hero-subtitle {
+  font-size: var(--font-size-sm);
+  opacity: 0.7;
+  margin-bottom: var(--spacing-md);
+  font-style: italic;
+}
+.hero-date {
+  font-size: var(--font-size-lg);
+  opacity: 0.9;
+  margin-bottom: var(--spacing-xs);
+}
+.hero-count {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  margin: var(--spacing-md) 0;
+}
+.hero-count strong {
+  font-size: var(--font-size-2xl);
+  font-weight: 800;
+  color: var(--accent-gold);
+}
+.hero-stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-sm) var(--spacing-lg);
+  margin-top: var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+.stat-item {
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(4px);
+  border-radius: 20px;
+  padding: 4px 14px;
+  white-space: nowrap;
+}
+.stat-item .stat-num {
+  font-weight: 700;
+  color: var(--accent-gold);
+  margin: 0 2px;
+}
+
+/* ===== 锚点导航 ===== */
+.anchor-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+  box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+}
+.anchor-nav a {
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 6px 14px;
+  border-radius: 18px;
+  transition: var(--transition-fast);
+  white-space: nowrap;
+}
+.anchor-nav a:hover,
+.anchor-nav a:focus {
+  background: var(--hero-gradient);
+  color: #fff;
+}
+
+/* ===== 内容主区 ===== */
+.content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: var(--spacing-2xl) var(--spacing-lg);
+}
+
+/* ===== 版块 ===== */
+.section-block { margin-bottom: var(--spacing-2xl); }
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 3px solid;
+  border-image: var(--hero-gradient) 1;
+}
+.section-header h2 {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.section-count {
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  background: var(--bg-primary);
+  padding: 2px 10px;
+  border-radius: 12px;
+}
+
+/* ===== 卡片网格 ===== */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+/* ===== 单条资讯卡片 ===== */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--card-radius);
+  border: var(--card-border);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(24px);
+}
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.card:hover {
+  box-shadow: var(--card-shadow-hover);
+  transform: translateY(-2px);
+}
+.card.visible:hover {
+  transform: translateY(-2px);
+}
+
+.card-header {
+  padding: var(--spacing-md) var(--spacing-lg) 0;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}
+.card-number {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--hero-gradient);
+  color: #fff;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+.card-title {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+.source-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+.source-chip.x-chip { background: #FFF0E6; color: #E8453A; }
+.source-chip.podcast-chip { background: #FFEBEE; color: #B71C1C; }
+.source-chip.blog-chip { background: #FFF3E0; color: #FF6B35; }
+
+.card-body {
+  padding: var(--spacing-sm) var(--spacing-lg);
+  flex: 1;
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+.card-body p { margin-bottom: var(--spacing-xs); }
+.card-body a {
+  color: var(--accent-red);
+  text-decoration: none;
+  border-bottom: 1px dotted var(--accent-red);
+}
+.card-body a:hover { border-bottom-style: solid; }
+
+.card-footer {
+  padding: var(--spacing-sm) var(--spacing-lg) var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+.card-time {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+.card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  color: #fff;
+  background: var(--hero-gradient);
+  padding: 6px 14px;
+  border-radius: 16px;
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+.card-link:hover {
+  opacity: 0.9;
+  transform: scale(1.03);
+}
+
+/* ===== 页脚 ===== */
+.footer {
+  text-align: center;
+  padding: var(--spacing-xl);
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  border-top: 1px solid rgba(255, 107, 53, 0.12);
+  margin-top: var(--spacing-2xl);
+}
+.footer a {
+  color: var(--accent-red);
+  text-decoration: none;
+}
+.footer a:hover { text-decoration: underline; }
+
+/* ===== 响应式 ===== */
+@media (max-width: 768px) {
+  :root {
+    --font-size-hero: 1.8rem;
+    --font-size-2xl: 1.5rem;
+  }
+  .card-grid { grid-template-columns: 1fr; }
+  .hero-stats { gap: var(--spacing-xs); }
+  .hero-stats .stat-item { font-size: var(--font-size-xs); padding: 3px 10px; }
+  .anchor-nav {
+    overflow-x: auto;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  .anchor-nav a { flex-shrink: 0; }
+  .content { padding: var(--spacing-lg) var(--spacing-md); }
+}
+@media (max-width: 480px) {
+  .card-grid { grid-template-columns: 1fr; }
+  .hero { padding: var(--spacing-xl) var(--spacing-md); }
+  .card-header { padding: var(--spacing-sm) var(--spacing-md) 0; }
+  .card-body { padding: var(--spacing-sm) var(--spacing-md); }
+  .card-footer { padding: var(--spacing-sm) var(--spacing-md) var(--spacing-md); }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO 区域 ===== -->
+<header class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">AI Builders 晨报</h1>
+    <div class="hero-subtitle">Follow Builders, Not Influencers</div>
+    <div class="hero-date">{{DATE_DISPLAY}}</div>
+    <div class="hero-count">今日共 <strong>{{TOTAL_COUNT}}</strong> 条资讯</div>
+    <div class="hero-stats">
+      <span class="stat-item">🤖 模型与前沿: <span class="stat-num">{{COUNT_MODELS}}</span>条</span>
+      <span class="stat-item">🚀 产品与发布: <span class="stat-num">{{COUNT_PRODUCTS}}</span>条</span>
+      <span class="stat-item">💼 商业与投资: <span class="stat-num">{{COUNT_BUSINESS}}</span>条</span>
+      <span class="stat-item">🔧 工程与工具: <span class="stat-num">{{COUNT_ENGINEERING}}</span>条</span>
+      <span class="stat-item">🎙️ 深度播客: <span class="stat-num">{{COUNT_PODCAST}}</span>条</span>
+    </div>
+  </div>
+</header>
+
+<!-- ===== 锚点导航 ===== -->
+<nav class="anchor-nav" id="anchorNav">
+  <a href="#section-models">🤖 模型与前沿</a>
+  <a href="#section-products">🚀 产品与发布</a>
+  <a href="#section-business">💼 商业与投资</a>
+  <a href="#section-engineering">🔧 工程与工具</a>
+  <a href="#section-podcast">🎙️ 深度播客</a>
+</nav>
+
+<!-- ===== 内容区 ===== -->
+<main class="content">
+  <!--
+  每个版块:
+  <section id="section-xxx" class="section-block">
+    <div class="section-header">
+      <h2>🤖 模型与前沿</h2>
+      <span class="section-count">X 条</span>
+    </div>
+    <div class="card-grid">
+      <article class="card">
+        <div class="card-header">
+          <span class="card-number">N</span>
+          <div>
+            <div class="card-meta">
+              <span class="source-chip x-chip">𝕏 X</span>
+            </div>
+            <h3 class="card-title">标题</h3>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>详细内容，不受字数限制...</p>
+        </div>
+        <div class="card-footer">
+          <span class="card-time">2 小时前</span>
+          <a href="URL" class="card-link" target="_blank" rel="noopener noreferrer">查看原文 →</a>
+        </div>
+      </article>
+    </div>
+  </section>
+  -->
+  {{CONTENT_SECTIONS}}
+</main>
+
+<!-- ===== 页脚 ===== -->
+<footer class="footer">
+  共 {{TOTAL_COUNT}} 条资讯 | 数据来源: X/Twitter, YouTube Podcasts, AI Blogs<br>
+  基于 <a href="https://github.com/zarazhangrui/follow-builders" target="_blank" rel="noopener noreferrer">Follow Builders</a> 技能生成 | Improved by Follow Builder
+</footer>
+
+<script>
+// ===== 北京人话时间格式化 =====
+function formatBeijingTime(isoString) {
+  if (!isoString) return '';
+  var date = new Date(isoString);
+  var now = new Date();
+  var bjDate = new Date(date.toLocaleString('en-US', { timeZone: 'Asia/Shanghai' }));
+  var bjNow = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Shanghai' }));
+  var diffMs = bjNow - bjDate;
+  var diffMins = Math.floor(diffMs / 60000);
+  var diffHours = Math.floor(diffMs / 3600000);
+  var diffDays = Math.floor(diffMs / 86400000);
+  var hours = bjDate.getHours();
+  var mins = bjDate.getMinutes().toString().padStart(2, '0');
+  var period = hours < 12 ? '上午' : hours < 18 ? '下午' : '晚上';
+
+  if (diffMins < 1) return '刚刚';
+  if (diffMins < 60) return diffMins + ' 分钟前';
+  if (diffHours < 6) return diffHours + ' 小时前';
+  if (diffDays === 0) return '今天' + period + ' ' + hours + ':' + mins;
+  if (diffDays === 1) return '昨天' + period + ' ' + hours + ':' + mins;
+  if (diffDays < 7) return diffDays + ' 天前';
+  var month = bjDate.getMonth() + 1;
+  var day = bjDate.getDate();
+  return month + '月' + day + '日 ' + hours + ':' + mins;
+}
+
+// ===== 滚动渐入动画 =====
+document.addEventListener('DOMContentLoaded', function() {
+  var cards = document.querySelectorAll('.card');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry, index) {
+      if (entry.isIntersecting) {
+        setTimeout(function() {
+          entry.target.classList.add('visible');
+        }, index * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+  cards.forEach(function(card) { observer.observe(card); });
+
+  // ===== 锚点导航高亮 =====
+  var sections = document.querySelectorAll('.section-block');
+  var navLinks = document.querySelectorAll('.anchor-nav a');
+  var navObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var id = entry.target.id;
+        navLinks.forEach(function(link) {
+          link.style.background = '';
+          link.style.color = '';
+          if (link.getAttribute('href') === '#' + id) {
+            link.style.background = 'var(--hero-gradient)';
+            link.style.color = '#fff';
+          }
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(function(section) { navObserver.observe(section); });
+});
+</script>
+
+</body>
+</html>
