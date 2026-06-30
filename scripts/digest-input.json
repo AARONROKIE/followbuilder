@@ -1,0 +1,30 @@
+{
+  "podcasts": [
+    {
+      "source": "podcast",
+      "name": "Training Data",
+      "title": "How Cursor Trained Composer on Fireworks: Distributed Infrastructure for High-Performance RL",
+      "guid": "c85a76ee-3dd8-11f1-8934-37efe54dd294",
+      "url": "https://www.youtube.com/watch?v=UDTr9yUnLUI",
+      "publishedAt": "2026-05-26T09:00:00.000Z"
+    }
+  ],
+  "x": [
+    {"name": "Thariq", "handle": "trq212", "bio": "Claude Code @anthropicai. prev YC W20, @southpkcommons, @medialab", "tweets": [{"id": "2059363113963540788", "text": "the basic trick to using Claude Code for non-technical work is to put a bunch of files in a folder and tell it can write scripts + make HTML", "url": "https://x.com/trq212/status/2059363113963540788", "likes": 2192, "retweets": 78}]},
+    {"name": "Aaron Levie", "handle": "levie", "bio": "ceo @box", "tweets": [{"id": "2059482349977653619", "text": "A meaningful portion of enterprises I talk to outside of Silicon Valley generally are looking to hire while also adopting agents. There's a huge wave of technical and engineering talent needed inside organizations, building software or acting as IDEs for agents.", "url": "https://x.com/levie/status/2059482349977653619", "likes": 173, "retweets": 15}]},
+    {"name": "Garry Tan", "handle": "garrytan", "bio": "President & CEO @ycombinator", "tweets": [{"id": "2059521656532721964", "text": "Founders must stop trying to building 2010-era businesses with 2026-era technology. Don't try to rebuild Foursquare or Yelp. Don't try to recreate Basecamp by 37 Signals with $10/mo SaaS pricing.", "url": "https://x.com/garrytan/status/2059521656532721964", "likes": 630, "retweets": 32}]},
+    {"name": "Zara Zhang", "handle": "zarazhangrui", "bio": "Builder. Harvard '17. GitHub: https://github.com/zarazhangrui", "tweets": [{"id": "2059354487823978586", "text": "How my own usage of coding agents has changed in the past month: Moved from the terminal to the Codex/Claude Code desktop apps. Transitioned from mostly Claude Code to 50-50 Claude Code and Codex.", "url": "https://x.com/zarazhangrui/status/2059354487823978586", "likes": 180, "retweets": 10}]},
+    {"name": "Nikunj Kothari", "handle": "nikunj", "bio": "partner @fpvventures", "tweets": [{"id": "2059424310079697188", "text": "Every venture backed application company needs to inherently be a data company and/or a fintech company. Ideally both. If not, find a way to quickly get there.", "url": "https://x.com/nikunj/status/2059424310079697188", "likes": 198, "retweets": 12}]},
+    {"name": "Peter Steinberger", "handle": "steipete", "bio": "Polyagentmorous ClawFather. @OpenClaw + @OpenAI", "tweets": [{"id": "2059453909819654554", "text": "autoreview is the most impactful skill I've added to my stack. It automatically reviews your code before landing a PR. Finds so many edge cases.", "url": "https://x.com/steipete/status/2059453909819654554", "likes": 998, "retweets": 38}]},
+    {"name": "Swyx", "handle": "swyx", "bio": "achieve ambition with intentionality, intensity, integrity & insanity. affiliations: @dxtipshq, @cognition, @temporalio, @aidotengineer, @latentspacepod", "tweets": [{"id": "2059463182297747527", "text": "ai infra is going VERTICAL", "url": "https://x.com/swyx/status/2059463182297747527", "likes": 178, "retweets": 5}]},
+    {"name": "Guillermo Rauch", "handle": "rauchg", "bio": "@vercel CEO", "tweets": [{"id": "2059444220956491937", "text": "Feedback is a gift. Critical feedback doubly so.", "url": "https://x.com/rauchg/status/2059444220956491937", "likes": 698, "retweets": 58}]}
+  ],
+  "blogs": [
+    {
+      "source": "blog",
+      "name": "Anthropic Engineering",
+      "title": "How we contain Claude across products",
+      "url": "https://www.anthropic.com/engineering/how-we-contain-claude"
+    }
+  ]
+}
